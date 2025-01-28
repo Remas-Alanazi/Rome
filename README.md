@@ -150,7 +150,8 @@ m
  
 # Interactive Map with Colored Circles for Price Ranges
 This code generates an interactive map of Rome with color-coded circles representing property price ranges. It provides a clear and visually engaging way to explore property prices across the city.
-```
+
+```python
 import folium
 import random
 
@@ -191,7 +192,8 @@ print("The map with colored circles has been saved as 'rome_colored_circles_map.
 <img src= "https://github.com/user-attachments/assets/646cf64e-2b71-4609-aec4-f6fb27c56e8d" alt="Value Counts Output" width="600"/>
 
 # Let’s Explore the Most Famous Tourist Places in Rome
-```
+
+```python
 import folium
 
 # Create a base map centered on Rome
