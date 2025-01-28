@@ -147,9 +147,62 @@ m.save('Rome_heatmap.html')
 m
 ```
 <img src= "https://github.com/user-attachments/assets/40e1167b-98ef-4c38-9bcc-b0fae00422b2" alt="Value Counts Output" width="600"/>
+ 
+# Interactive Map with Colored Circles for Price Ranges
+This code generates an interactive map of Rome with color-coded circles representing property price ranges. It provides a clear and visually engaging way to explore property prices across the city.
+```
+import folium
+import random
 
+# Create a base map centered on Rome
+map_rome = folium.Map(location=[41.9028, 12.4964], zoom_start=12)
 
+# Generate random listings around Rome with colored circles
+for i in range(20):  # Generating 20 random points
+    latitude = 41.9028 + random.uniform(-0.05, 0.05)  # Random latitude near Rome
+    longitude = 12.4964 + random.uniform(-0.05, 0.05)  # Random longitude near Rome
+    price = random.randint(30, 300)  # Random price between 30 and 300 €
 
+    # Determine the color of the circle based on price range
+    if price < 50:
+        color = "green"
+    elif price < 100:
+        color = "blue"
+    elif price < 200:
+        color = "orange"
+    else:
+        color = "red"
+
+    # Add a circle marker to the map
+    folium.CircleMarker(
+        location=[latitude, longitude],
+        radius=8,  # Radius of the circle
+        color=color,
+        fill=True,
+        fill_color=color,
+        fill_opacity=0.6,
+        popup=f"Random Listing {i+1}<br>Price: {price} €"
+    ).add_to(map_rome)
+
+# Save and display the map
+map_rome.save("rome_colored_circles_map.html")
+print("The map with colored circles has been saved as 'rome_colored_circles_map.html'.")
+```
+<img src= "https://github.com/user-attachments/assets/646cf64e-2b71-4609-aec4-f6fb27c56e8d" alt="Value Counts Output" width="600"/>
+
+# Let`s Calculate the least busy dates based on the fewest reviews
+```
+# Calculate the least busy dates based on the fewest reviews
+least_busy_dates = listings['last_review'].value_counts(ascending=True).head(10)
+
+# Plot the data
+least_busy_dates.plot(kind='bar', color='lightgreen')
+plt.title('Top 10 Least Busy Dates')
+plt.ylabel('Number of Listings')
+plt.xlabel('Date')
+plt.show()
+```
+<img src= "https://github.com/user-attachments/assets/a2c967f9-0db3-4d63-8ea1-d2d3494941de" alt="Value Counts Output" width="600"/>
 
 
 
