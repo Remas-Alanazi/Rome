@@ -190,19 +190,37 @@ print("The map with colored circles has been saved as 'rome_colored_circles_map.
 ```
 <img src= "https://github.com/user-attachments/assets/646cf64e-2b71-4609-aec4-f6fb27c56e8d" alt="Value Counts Output" width="600"/>
 
-# Let`s Calculate the least busy dates based on the fewest reviews
+# Let’s Explore the Most Famous Tourist Places in Rome
 ```
-# Calculate the least busy dates based on the fewest reviews
-least_busy_dates = listings['last_review'].value_counts(ascending=True).head(10)
+import folium
 
-# Plot the data
-least_busy_dates.plot(kind='bar', color='lightgreen')
-plt.title('Top 10 Least Busy Dates')
-plt.ylabel('Number of Listings')
-plt.xlabel('Date')
-plt.show()
+# Create a base map centered on Rome
+map_rome = folium.Map(location=[41.9028, 12.4964], zoom_start=13)
+
+# Add markers for popular tourist attractions in Rome
+tourist_spots = [
+    {"name": "Colosseum", "location": [41.8902, 12.4922], "description": "The iconic Roman amphitheater."},
+    {"name": "Trevi Fountain", "location": [41.9009, 12.4833], "description": "The famous Baroque fountain."},
+    {"name": "Vatican City", "location": [41.9029, 12.4534], "description": "The seat of the Catholic Church."},
+    {"name": "Piazza Navona", "location": [41.8992, 12.4731], "description": "A beautiful square with fountains."},
+    {"name": "Pantheon", "location": [41.8986, 12.4769], "description": "A historic Roman temple."},
+    {"name": "Spanish Steps", "location": [41.9058, 12.4825], "description": "A monumental stairway of 135 steps."},
+]
+
+# Add markers to the map
+for spot in tourist_spots:
+    folium.Marker(
+        location=spot["location"],
+        popup=f"<b>{spot['name']}</b><br>{spot['description']}",
+        icon=folium.Icon(color="red", icon="info-sign")
+    ).add_to(map_rome)
+
+# Save and display the map
+map_rome.save("rome_tourist_spots.html")
+print("The map with popular tourist attractions in Rome has been saved as 'rome_tourist_spots.html'.")
 ```
-<img src= "https://github.com/user-attachments/assets/a2c967f9-0db3-4d63-8ea1-d2d3494941de" alt="Value Counts Output" width="600"/>
+
+<img src= "https://github.com/user-attachments/assets/7e381bad-812e-43fd-a657-ece82f43de3c" alt="Value Counts Output" width="600"/>
 
 
 
